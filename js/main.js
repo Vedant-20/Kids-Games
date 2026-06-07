@@ -25,7 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const gameTitles = {
         shapes: 'Shape Matcher! ⭐',
         colors: 'Color Sorter! 🍎',
-        blocks: 'Stack-a-Block! 🧱'
+        blocks: 'Stack-a-Block! 🧱',
+        bubbles: 'Bubble Popper! 🧼',
+        memory: 'Memory Match! 🦁'
     };
 
     // Card click event listeners
@@ -62,6 +64,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Initialize AudioContext on first user action
         gameAudio.init();
 
+        // Clean up previous game if it has a stop method
+        if (currentGameInstance && typeof currentGameInstance.stop === 'function') {
+            currentGameInstance.stop();
+        }
+
         currentGameType = gameType;
         gameTitleElement.innerText = gameTitles[gameType];
         
@@ -81,6 +88,10 @@ document.addEventListener('DOMContentLoaded', () => {
             currentGameInstance = new ColorsGame(gameContainer, handleWin);
         } else if (gameType === 'blocks') {
             currentGameInstance = new BlocksGame(gameContainer, handleWin);
+        } else if (gameType === 'bubbles') {
+            currentGameInstance = new BubblesGame(gameContainer, handleWin);
+        } else if (gameType === 'memory') {
+            currentGameInstance = new MemoryGame(gameContainer, handleWin);
         }
 
         if (currentGameInstance) {
@@ -94,6 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
         screenDashboard.classList.remove('hidden');
         victoryOverlay.classList.add('hidden');
         confetti.stop();
+        if (currentGameInstance && typeof currentGameInstance.stop === 'function') {
+            currentGameInstance.stop();
+        }
         currentGameInstance = null;
         currentGameType = '';
     }

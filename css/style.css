@@ -740,6 +740,123 @@ body {
     box-shadow: 0 2px 0 #54ac00, 0 4px 8px rgba(0,0,0,0.1);
 }
 
+.card-bubbles::before { background: var(--color-blue); }
+.card-bubbles .play-badge { background: var(--color-blue); box-shadow: 0 4px 0 #3b8cc4; }
+
+.card-memory::before { background: var(--color-orange); }
+.card-memory .play-badge { background: var(--color-orange); box-shadow: 0 4px 0 #d97706; }
+
+/* Game 4: Bubble Popper */
+.bubble-element {
+    position: absolute;
+    bottom: -120px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: inset -8px -8px 15px rgba(0,0,0,0.1), inset 8px 8px 15px rgba(255,255,255,0.8), 0 8px 16px rgba(0,0,0,0.06);
+    border: 2px solid rgba(255, 255, 255, 0.45);
+    animation: floatUp linear forwards;
+    touch-action: none;
+}
+
+.bubble-element::before {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 15%;
+    width: 20%;
+    height: 20%;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 50%;
+}
+
+.bubble-element.popping {
+    transform: scale(1.4);
+    opacity: 0;
+    transition: transform 0.15s ease-out, opacity 0.15s ease-out;
+    pointer-events: none;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        transform: translateY(-620px) scale(1);
+    }
+}
+
+/* Game 5: Memory Match */
+.memory-game-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+}
+
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 540px;
+    width: 100%;
+    padding: 1rem;
+}
+
+.memory-card {
+    height: 160px;
+    perspective: 1000px;
+    cursor: pointer;
+}
+
+.memory-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-style: preserve-3d;
+    border-radius: 25px;
+    box-shadow: var(--card-shadow);
+    border: 5px solid white;
+}
+
+.memory-card.flipped .memory-card-inner {
+    transform: rotateY(180deg);
+}
+
+.memory-card-front, .memory-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4.5rem;
+    user-select: none;
+}
+
+.memory-card-front {
+    background: linear-gradient(135deg, #e1bee7 0%, #e0f2fe 100%);
+    transform: rotateY(180deg);
+}
+
+.memory-card-back {
+    background: linear-gradient(135deg, #ff9f1c 0%, #ffca3a 100%);
+    color: white;
+    font-size: 3.5rem;
+    font-weight: bold;
+    text-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.memory-card.matched .memory-card-inner {
+    animation: bounce 0.6s ease;
+    border-color: var(--color-green);
+}
+
 /* Footer style */
 footer {
     text-align: center;
@@ -751,3 +868,4 @@ footer a {
     color: rgba(0,0,0,0.5);
     text-decoration: none;
 }
+

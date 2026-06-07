@@ -77,6 +77,17 @@ class KidsGameAudio {
         this.playTone(220, 'triangle', 0.25, 0.4, 0.01, -120);
     }
 
+    playPop() {
+        // High pitched wet pop sound (sine decay)
+        this.playTone(800, 'sine', 0.08, 0.25, 0.01, -300);
+    }
+
+    playFlip() {
+        // Quick card flipping swish (low to mid triangle pitch slide)
+        this.playTone(150, 'triangle', 0.12, 0.2, 0.01, 150);
+    }
+
+
     playVictory() {
         // Upbeat major scale arpeggio
         if (this.muted) return;
