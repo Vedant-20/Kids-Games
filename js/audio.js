@@ -87,6 +87,29 @@ class KidsGameAudio {
         this.playTone(150, 'triangle', 0.12, 0.2, 0.01, 150);
     }
 
+    playChime(frequency) {
+        // Playful bell chime sound (triangle wave with fast decay)
+        if (this.muted) return;
+        this.init();
+        if (!this.ctx) return;
+
+        const osc = this.ctx.createOscillator();
+        const gainNode = this.ctx.createGain();
+
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(frequency, this.ctx.currentTime);
+
+        gainNode.gain.setValueAtTime(0.35, this.ctx.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.6);
+
+        osc.connect(gainNode);
+        gainNode.connect(this.ctx.destination);
+
+        osc.start();
+        osc.stop(this.ctx.currentTime + 0.6);
+    }
+
+
 
     playVictory() {
         // Upbeat major scale arpeggio

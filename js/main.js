@@ -27,7 +27,9 @@ document.addEventListener('DOMContentLoaded', () => {
         colors: 'Color Sorter! 🍎',
         blocks: 'Stack-a-Block! 🧱',
         bubbles: 'Bubble Popper! 🧼',
-        memory: 'Memory Match! 🦁'
+        memory: 'Memory Match! 🦁',
+        house: 'House Builder! 🏡',
+        xylo: 'Musical Xylophone! 🎵'
     };
 
     // Card click event listeners
@@ -92,7 +94,12 @@ document.addEventListener('DOMContentLoaded', () => {
             currentGameInstance = new BubblesGame(gameContainer, handleWin);
         } else if (gameType === 'memory') {
             currentGameInstance = new MemoryGame(gameContainer, handleWin);
+        } else if (gameType === 'house') {
+            currentGameInstance = new HouseGame(gameContainer, handleWin);
+        } else if (gameType === 'xylo') {
+            currentGameInstance = new XylophoneGame(gameContainer, handleWin);
         }
+
 
         if (currentGameInstance) {
             currentGameInstance.start();

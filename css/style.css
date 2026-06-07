@@ -857,6 +857,228 @@ body {
     border-color: var(--color-green);
 }
 
+.card-house::before { background: var(--color-pink); }
+.card-house .play-badge { background: var(--color-pink); box-shadow: 0 4px 0 #d94b7e; }
+
+.card-xylo::before { background: var(--color-green); }
+.card-xylo .play-badge { background: var(--color-green); box-shadow: 0 4px 0 #5ec200; }
+
+/* Game 6: House Builder */
+.house-game-arena {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    gap: 1.5rem;
+}
+
+.house-canvas {
+    width: 100%;
+    height: 380px;
+    position: relative;
+    background: linear-gradient(to top, #b3e5fc 0%, #e1f5fe 100%);
+    border-radius: 25px;
+    overflow: hidden;
+    border: 4px solid white;
+    box-shadow: inset 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.house-grass-ground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: linear-gradient(to top, #70e000 0%, #38b000 100%);
+    border-radius: 50% 50% 0 0 / 15px 15px 0 0;
+}
+
+.house-blueprint-slot {
+    opacity: 0.4;
+    transition: all 0.3s;
+}
+
+.house-blueprint-slot.hovered {
+    opacity: 0.8;
+    transform: scale(1.05);
+}
+
+.house-blueprint-slot.matched {
+    display: none;
+}
+
+.house-draggable-item {
+    cursor: grab;
+    touch-action: none;
+    transition: transform 0.2s;
+}
+
+.house-draggable-item.dragging {
+    cursor: grabbing;
+    transform: scale(1.1);
+    z-index: 100;
+}
+
+.placed-house-item {
+    position: absolute;
+    z-index: 5;
+    animation: bounce 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.house-tray {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    min-height: 150px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 30px;
+    padding: 1.5rem;
+    border: 3px dashed rgba(0,0,0,0.1);
+}
+
+.house-svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 6px 4px rgba(0,0,0,0.12));
+}
+
+.house-svg-outline {
+    width: 100%;
+    height: 100%;
+}
+
+/* Smoke animation */
+.smoke-particle {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: rgba(180, 180, 180, 0.6);
+    border-radius: 50%;
+    animation: smokeRise 1s linear forwards;
+    pointer-events: none;
+}
+
+@keyframes smokeRise {
+    0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-80px) translateX(25px) scale(2.5);
+        opacity: 0;
+    }
+}
+
+/* Game 7: Musical Xylophone */
+.xylo-game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+}
+
+.xylo-instruction {
+    font-size: 1.4rem;
+    color: #555;
+    margin-bottom: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.xylo-board {
+    width: 100%;
+    max-width: 600px;
+    height: 320px;
+    background: #e6ccb2;
+    border-radius: 25px;
+    position: relative;
+    border: 6px solid #b79a82;
+    box-shadow: var(--card-shadow), inset 0 6px 12px rgba(0,0,0,0.08);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.xylo-support {
+    position: absolute;
+    left: 5%;
+    width: 90%;
+    height: 15px;
+    background: #7f5539;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+}
+
+.xylo-support-top { top: 20%; }
+.xylo-support-bottom { bottom: 20%; }
+
+.xylo-keys-row {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 90%;
+    z-index: 5;
+}
+
+.xylo-key {
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    box-shadow: 0 8px 0 rgba(0,0,0,0.15), inset 0 4px 0 rgba(255,255,255,0.4);
+    border: 3px solid rgba(255,255,255,0.25);
+    transition: transform 0.1s;
+    position: relative;
+    touch-action: none;
+}
+
+.xylo-key.pressed {
+    transform: scale(0.94) translateY(6px);
+    box-shadow: 0 2px 0 rgba(0,0,0,0.15);
+}
+
+.xylo-screw {
+    width: 8px;
+    height: 8px;
+    background: #ccc;
+    border-radius: 50%;
+    box-shadow: inset 1px 1px 2px rgba(255,255,255,0.8), 1px 1px 2px rgba(0,0,0,0.4);
+}
+
+.xylo-note-label {
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    user-select: none;
+}
+
+/* Floating music note particle */
+.xylo-particle {
+    position: absolute;
+    font-size: 2.2rem;
+    animation: floatUpAndFade 1s cubic-bezier(0.175, 0.885, 0.32, 1) forwards;
+    pointer-events: none;
+    z-index: 100;
+}
+
+@keyframes floatUpAndFade {
+    0% {
+        transform: translateY(0) rotate(0deg) scale(0.8);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-120px) rotate(20deg) scale(1.5);
+        opacity: 0;
+    }
+}
+
 /* Footer style */
 footer {
     text-align: center;
@@ -868,4 +1090,5 @@ footer a {
     color: rgba(0,0,0,0.5);
     text-decoration: none;
 }
+
 
