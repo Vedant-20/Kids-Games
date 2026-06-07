@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids Play Zone - Fun Drag & Drop Games</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Floating Bubble Background -->
+    <div class="bubble-bg">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="navbar">
+        <div class="brand">
+            <span class="emoji">🎈</span> Kids Play Zone
+        </div>
+        <div class="nav-controls">
+            <button id="btn-sound" class="btn-round btn-mute" title="Sound On/Off">🔊</button>
+        </div>
+    </header>
+
+    <!-- Dashboard Screen -->
+    <main id="screen-dashboard" class="screen">
+        <h1 class="dashboard-title">Choose a <span>Fun Game!</span></h1>
+        
+        <div class="game-grid">
+            <!-- Game Card 1: Shape Matcher -->
+            <div class="game-card card-shapes" data-game="shapes">
+                <span class="card-icon">⭐</span>
+                <h3>Shape Matcher</h3>
+                <p>Drag the colorful shapes to their outlines!</p>
+                <span class="play-badge">Play!</span>
+            </div>
+
+            <!-- Game Card 2: Color Sorter -->
+            <div class="game-card card-colors" data-game="colors">
+                <span class="card-icon">🍎</span>
+                <h3>Color Sorter</h3>
+                <p>Sort items into their matching colored baskets!</p>
+                <span class="play-badge">Play!</span>
+            </div>
+
+            <!-- Game Card 3: Block Tower -->
+            <div class="game-card card-blocks" data-game="blocks">
+                <span class="card-icon">🧱</span>
+                <h3>Stack-a-Block</h3>
+                <p>Stack blocks on top of each other to build a tall tower!</p>
+                <span class="play-badge">Play!</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Game Play Screen -->
+    <main id="screen-game" class="screen hidden">
+        <div class="game-container">
+            <div class="game-header">
+                <button id="btn-back" class="btn-round btn-back" title="Go Back">🏠</button>
+                <h2 id="game-title" class="game-title">Game Title</h2>
+                <div id="game-progress" class="game-stars">
+                    <!-- Progress stars dynamically added here -->
+                </div>
+            </div>
+
+            <div id="playground" class="playground">
+                <!-- Current game layout injected here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- Celebration Victory Overlay -->
+    <div id="victory-overlay" class="celebration-overlay hidden">
+        <div class="celebration-card">
+            <span class="celebration-emoji">🎉</span>
+            <h2 id="victory-title">Super Job!</h2>
+            <p id="victory-message">You are awesome!</p>
+            <button id="btn-restart" class="btn-large">Play Again 🔄</button>
+        </div>
+    </div>
+
+    <!-- Footnotes -->
+    <footer>
+        <p>&copy; 2026 Kids Play Zone | Made with 💖 for Nursery Kids</p>
+    </footer>
+
+    <!-- Game Scripts -->
+    <script src="js/audio.js"></script>
+    <script src="js/confetti.js"></script>
+    <script src="js/games/shapes.js"></script>
+    <script src="js/games/colors.js"></script>
+    <script src="js/games/blocks.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
